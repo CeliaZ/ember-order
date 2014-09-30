@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+
+  <title>Mobile Project</title>
+  <link href="css/jquery.mobile-1.4.3.min.css" rel="stylesheet">
+  <link href="css/mobile.css" rel="stylesheet">
+</head>
+
+<body>
+  <script type="text/x-handlebars" data-template-name="components/quick-menu">
+    <div data-display="overlay" data-position="left" data-role="panel" data-theme="a" class="main-menu">
+      <ul class="ui-alt-icon ui-nodisc-icon">
+        <li data-icon="home">{{#link-to 'intro'}}Home{{/link-to}}</li>
+        <li>{{#link-to 'menulist' 'appetizers' }}Appetizers{{/link-to}}</li>
+        <li>{{#link-to 'menulist' 'entrees' }}Entrees{{/link-to}}</li>
+        <li>{{#link-to 'menulist' 'desserts' }}Desserts{{/link-to}}</li>
+        <li>{{#link-to 'menulist' 'drinks' }}Drinks{{/link-to}}</li>
+        <li>{{#link-to 'order' }}Check Out{{/link-to}}</li>
+      </ul>
+    </div>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="intro">
+    <div data-role="header">
+      <h2>How to Order</h2>
+      <a class="ui-btn ui-btn-icon-notext ui-corner-all ui-icon-bars ui-nodisc-icon ui-alt-icon ui-btn-left main-menu-button">Menu</a>
+      {{#link-to 'order' classNames="ui-btn ui-btn-icon-notext ui-corner-all ui-icon-shop ui-nodisc-icon ui-alt-icon ui-btn-right"}}Checkout{{/link-to}}
+    </div><!-- /header -->
+
+    <div class="ui-content"><!-- /content -->
+      <p>1. Select dish type from menu bar on left-top of the screen</p>
+      <p>2. Touch the dish to view details</p>
+      <p>3. Press the 'Order' button to order the dish</p>
+      <p>4. When finishing ordering, either use the button on the right top or 'check out' in the menu bar to review your order</p>
+      <p>5. Press the 'confirm' button to submit your order</p>
+      <p>6. You can modify your order later and please <strong>DO</strong> remember to 'confirm' again</p>
+      <p><strong>Enjoy your dish!</strong></p>
+    </div>
+
+    {{quick-menu}}
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="menulist">
+    <div data-role="header">
+      <h2>{{id}}</h2>
+      <a class="ui-btn ui-btn-icon-notext ui-corner-all ui-icon-bars ui-nodisc-icon ui-alt-icon ui-btn-left main-menu-button">Menu</a>
+      {{#link-to 'order' classNames="ui-btn ui-btn-icon-notext ui-corner-all ui-icon-shop ui-nodisc-icon ui-alt-icon ui-btn-right"}}Checkout{{/link-to}}
+    </div><!-- /header -->
+
+    <div class="ui-content"><!-- /content -->
+      <ul id="#menu-list" data-role="listview">
+        {{#each menuitems}}
+        <li>
+          <a class="menu-item" {{action 'detail' id}}>
+          <img class="dish-photo" {{bind-attr src=imageURL}}></img>
+          <div class="name">{{name}}</div>
+          </a>
+        </li>
+        {{/each}}
+      </ul>
+    </div>
+
+    {{quick-menu}}
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="menuitem">
+    <div data-role="header">
+      <h2>{{name}}</h2>
+      <a class="ui-btn ui-btn-icon-notext ui-corner-all ui-icon-carat-l ui-nodisc-icon ui-alt-icon ui-btn-left"
+      href="#" {{action 'back' menulist}}>Menu</a>
+      {{#link-to 'order' classNames="ui-btn ui-btn-icon-notext ui-corner-all ui-icon-shop ui-nodisc-icon ui-alt-icon ui-btn-right"}}Checkout{{/link-to}}
+    </div><!-- /header -->
+
+    <div class="ui-content"><!-- /content -->
+      <img class="dish-photo" {{bind-attr src=imageURL}}></img>
+      <header>{{description}}</header>
+      <form class="order-button">
+        <div class="ui-input-btn ui-btn ui-corner-all ui-shadow">
+          Order (${{price}})
+          <input type="button" data-enhanced="true" value="order" {{action 'add' id}}>
+        </div>
+      </form>
+    </div>
+    <div data-role="popup" class="dish-added-popup popup">
+      <p>Dish Ordered!</p>
+    </div>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="order">
+    <div data-role="header">
+      <h2>Order</h2>
+      <a class="ui-btn ui-btn-icon-notext ui-corner-all ui-icon-bars ui-nodisc-icon ui-alt-icon ui-btn-left main-menu-button">Menu</a>
+    </div><!-- /header -->
+
+    <div class="ui-content"><!-- /content -->
+
+      {{#if menuitems}}
+      <div class="ui-field-contain">
+        <label for="textinput-fc">Table number:</label>
+        {{input value=table placeholder='Please enter your table number'}}
+      </div>
+      <ul id="#menu-list" data-role="listview" data-split-icon="minus" data-split-theme="a" data-inset="true">
+        {{#each menuitems}}
+        <li>
+          <a class="menu-item">
+          <img class="dish-photo" {{bind-attr src=imageURL}}></img>
+          <h2>{{name}}</h2>
+          <p>${{price}}</p></a>
+          <a {{action "delete" id}}>Purchase album</a>
+        </li>
+        {{/each}}
+      </ul>
+      Total: ${{total}}
+      <input type="submit" value="Confirm" {{action 'submit'}}>
+      {{else}}
+      You have not ordered anything yet, please tap the left top button for the menu.
+      {{/if}}
+    </div>
+
+    <div data-role="popup" class="dish-confirm-popup popup">
+      <p>Bon Appetit!</p>
+    </div>
+    <div data-role="popup" class="dish-empty-popup popup">
+      <p>Please enter your table name.</p>
+    </div>
+
+    {{quick-menu}}
+  </script>
+
+  <script src="js/libs/jquery.min.js"></script>
+  <script src="js/libs/handlebars-1.1.2.js"></script>
+  <script src="js/libs/ember-1.6.1.js"></script>
+  <script src="js/libs/ember-data.js"></script>
+  <script src="js/menu.js"></script>
+  <script src="js/libs/jquery.mobile-1.4.3.min.js"></script>
+
+</body>
+</html>

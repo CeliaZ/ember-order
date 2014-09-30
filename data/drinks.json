@@ -1,0 +1,24 @@
+{
+  "id": 1,
+  "name": "drinks",
+  "items": [
+  {
+    "id": 1,
+    "name": "Tiny Twice-Baked Potatoes with Smoked Paprika and Bacon",
+    "imageURL": "/images/drinks-cocktail.jpg",
+    "description": ""
+  },
+  {
+    "id": 2,
+    "name": "Egg Shrimp Sandwitch",
+    "imageURL": "/images/drinks-juice.jpg",
+    "description": ""
+  },
+  {
+    "id": 3,
+    "name": "Lamb",
+    "imageURL": "/images/drinks-whiskey.jpg",
+    "description": ""
+  }
+  ]
+}

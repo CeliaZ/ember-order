@@ -1,0 +1,24 @@
+{
+  "id": 1,
+  "name": "desserts",
+  "items": [
+  {
+    "id": 1,
+    "name": "Tiny Twice-Baked Potatoes with Smoked Paprika and Bacon",
+    "imageURL": "/images/desserts-icecream.jpg",
+    "description": ""
+  },
+  {
+    "id": 2,
+    "name": "Egg Shrimp Sandwitch",
+    "imageURL": "/images/desserts-cheesecake.jpg",
+    "description": ""
+  },
+  {
+    "id": 3,
+    "name": "Lamb",
+    "imageURL": "/images/desserts-chocolatecake.jpg",
+    "description": ""
+  }
+  ]
+}

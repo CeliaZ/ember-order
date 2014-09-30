@@ -1,0 +1,106 @@
+h2 {
+  text-transform: capitalize;
+}
+
+// fixed menu bar Aug 26
+.ui-header {
+  top: 0;
+  left: 0;
+  position: fixed;
+  width: 100%;
+  z-index: 10;
+}
+
+
+.ui-content {
+  margin-top: 44px;
+}
+
+.ui-content ul.ui-listview li {
+  display: table;
+  width: 100%;
+  .menu-item {
+    padding: 0px 40px 0 170px;
+    height: 120px;
+    width: 100%;
+    position: relative;
+    display: table-cell;
+    vertical-align: middle;
+    img.dish-photo {
+      position: absolute;
+      max-height: none;
+      max-width: none;
+      height: 120px;
+      width: 160px;
+    }
+    .name {
+      white-space: normal;
+      text-shadow: 1px 1px #ccc;
+      margin-bottom: 5px;
+    }
+    .desc {
+      height: 60px;
+      white-space: normal;
+      font-size: 0.8em;
+      color: black;
+    }
+    .purchase {
+      position: absolute;
+      padding: 0;
+      top: 0;
+      right: 5px;
+      height: 120px;
+      margin: 0;
+      border: none;
+      box-shadow: none;
+      width: 100px;
+      background: url(../images/order.png) top right no-repeat;
+      background-size: 80px 80px;
+      padding-top: 80px;
+    }
+  }
+}
+
+.ui-page.menuitem {
+  .dish-added-popup {
+    padding: 20px;
+    font-size: 2em;
+  }
+  .ui-content {
+    padding-bottom: 20px;
+    .dish-photo {
+      width: 100%;
+    }
+    header {
+      font-size: 1.2em;
+      font-weight: bold;
+      margin-bottom: 0.6em;
+    }
+    .desc {
+
+    }
+    .order-button {
+      margin-top: 40px;
+    }
+  }
+}
+
+.ui-page.order {
+  .menu-item {
+    padding: 0px 40px 0 170px;
+    height: 120px;
+    width: 100%;
+    position: relative;
+    display: table-cell;
+    vertical-align: middle;
+    h2 {
+      // word-break: break-word;
+      white-space: normal;
+    }
+  }
+}
+
+.popup {
+  padding: 20px;
+  font-size: 2em;
+}

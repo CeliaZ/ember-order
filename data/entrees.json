@@ -1,0 +1,24 @@
+{
+  "id": 1,
+  "name": "entrees",
+  "items": [
+  {
+    "id": 1,
+    "name": "Tiny Twice-Baked Potatoes with Smoked Paprika and Bacon",
+    "imageURL": "/images/entrees-seabass.jpg",
+    "description": ""
+  },
+  {
+    "id": 2,
+    "name": "Egg Shrimp Sandwitch",
+    "imageURL": "/images/entrees-chicken.png",
+    "description": ""
+  },
+  {
+    "id": 3,
+    "name": "Lamb",
+    "imageURL": "/images/entrees-lambpops.jpg",
+    "description": ""
+  }
+  ]
+}
